@@ -1,177 +1,697 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Academic Portfolio | Computer Science Ph.D.</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      line-height: 1.6;
-      color: #1f2937;
-      max-width: 820px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-      background: #f0f9ff;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Portfolio | Computer Science Ph.D.</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #292929;
+    line-height: 1.7;
+}
+
+/* Navigation */
+nav {
+    background: #30251f;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-size: 19px;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 24px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #d5ad83;
+}
+
+/* Hero */
+.hero {
+    min-height: 470px;
+    background:
+      linear-gradient(120deg, rgba(30,25,20,.88),
+      rgba(85,49,28,.78)),
+      url("hero-bg.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 70px 8%;
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.profile-img {
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+    border: 8px solid white;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    margin-top: 70px;
+    flex-shrink: 0;
+}
+
+.hero-text {
+    padding-top: 20px;
+}
+
+.hero-text h1 {
+    font-size: 40px;
+    margin-bottom: 5px;
+}
+
+.hero-text h3 {
+    font-weight: normal;
+    color: #e3c8ad;
+    font-size: 19px;
+}
+
+.social {
+    margin: 18px 0;
+}
+
+.social a {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    border-bottom: 1px solid #d5ad83;
+    padding-bottom: 2px;
+    transition: .3s;
+}
+
+.social a:hover {
+    color: #d5ad83;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 24px;
+    border: 1px solid #a98a6d;
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.btn:hover {
+    background: #a98a6d;
+    color: white;
+}
+
+/* Common sections */
+section {
+    padding: 85px 8%;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.section-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+}
+
+h2 {
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 1.25;
+    margin-bottom: 25px;
+    color: #30251f;
+}
+
+/* Alternating Section Backgrounds */
+.bg-cream {
+    background: #f2efec;
+}
+
+.bg-white {
+    background: #ffffff;
+}
+
+/* Styled Lists & Items */
+.item-list {
+    list-style: none;
+}
+
+.item-entry {
+    padding: 18px 0;
+    border-bottom: 1px solid #e0dcd8;
+}
+
+.item-entry:first-child {
+    padding-top: 0;
+}
+
+.item-entry:last-child {
+    border-bottom: none;
+}
+
+.item-entry h3 {
+    font-size: 17px;
+    font-weight: bold;
+    color: #30251f;
+    margin-bottom: 4px;
+}
+
+.item-entry p {
+    color: #555;
+    font-size: 15px;
+    margin-bottom: 6px;
+}
+
+.item-entry a {
+    display: inline-block;
+    color: #997452;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.item-entry a:hover {
+    text-decoration: underline;
+    color: #30251f;
+}
+
+/* Contact */
+.contact {
+    background: #30251f;
+    color: white;
+    text-align: center;
+}
+
+.contact h2 {
+    color: white;
+}
+
+.contact p {
+    color: #ddd;
+    max-width: 600px;
+    margin: 0 auto 10px auto;
+}
+
+footer {
+    background: #211a16;
+    color: #aaa;
+    text-align: center;
+    padding: 20px;
+    font-size: 13px;
+}
+
+/* Responsive */
+@media(max-width: 850px) {
+    html {
+        scroll-padding-top: 100px;
     }
 
-    header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      border-bottom: 2px solid #0284c7;
-      padding-bottom: 1.25rem;
-      margin-bottom: 2rem;
-    }
-
-    .profile-pic {
-      width: 92px;
-      height: 92px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #ffffff;
-      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.15);
-      flex-shrink: 0;
-    }
-
-    @media (max-width: 600px) {
-      header {
+    nav {
         flex-direction: column;
+        gap: 12px;
+    }
+
+    nav ul {
+        gap: 14px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero {
+        padding: 45px 7%;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        gap: 25px;
         text-align: center;
-      }
     }
 
-    h1 {
-      margin: 0;
-      font-size: 1.9rem;
-      color: #0c4a6e;
+    .profile-img {
+        width: 230px;
+        height: 270px;
+        margin-top: 0;
     }
 
-    .subtitle {
-      color: #475569;
-      font-size: 1.05rem;
-      margin-top: 0.3rem;
+    .hero-text {
+        padding-top: 0;
     }
 
-    .links a {
-      display: inline-block;
-      margin-right: 1rem;
-      margin-top: 0.6rem;
-      color: #0284c7;
-      text-decoration: none;
-      font-weight: 600;
+    .hero-text h1 {
+        font-size: 30px;
     }
 
-    .links a:hover {
-      text-decoration: underline;
+    .section-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     section {
-      background: #ffffff;
-      padding: 1.5rem;
-      border-radius: 8px;
-      border: 1px solid #bae6fd;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
-      margin-bottom: 1.5rem;
+        padding: 60px 7%;
     }
 
     h2 {
-      margin-top: 0;
-      color: #0c4a6e;
-      font-size: 1.3rem;
-      border-bottom: 1px solid #e0f2fe;
-      padding-bottom: 0.4rem;
+        font-size: 28px;
     }
-
-    ul {
-      padding-left: 1.2rem;
-      margin-bottom: 0;
-    }
-
-    li {
-      margin-bottom: 0.6rem;
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <img src="profile.png" alt="Profile Photo" class="profile-pic" />
-    <div>
-      <h1>[Dr.Prathima Subramanian], Ph.D.</h1>
-      <div class="subtitle">Doctorate in Computer Science | Educator &amp; AI Data Specialist</div>
-      <div class="links">
-        <a href="https://scholar.google.com/citations?hl=en&user=XOlexFEAAAAJ" target="_blank">Google Scholar Profile</a>
-        <a href="DataAnnotations- llustration.html">A Visual Story for Data Annotation &rarr;</a>
-      </div>
+<!-- Navigation 
+<nav>
+    
+    <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#patents">Patent</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#Academic Portfolio">Teaching</a></li>
+        <li><a href="#workshops">Workshops</a></li>
+        <li><a href="#fdp">FDP</a></li>
+    </ul>
+</nav> -->
+
+<!-- Hero Section -->
+<header class="hero" id="about">
+    <div class="hero-content">
+
+        <img
+          class="profile-img"
+          src="profile.png"
+          alt="Profile Photo"
+        >
+
+        <div class="hero-text">
+            <h1>Dr.Prathima Subramanian, Ph.D.</h1>
+            <h3>AI Data Specialist, Reseacher &amp; Educator </h3>
+
+            <div class="social">
+               <!-- 
+                <a href="https://scholar.google.com/citations?hl=en&user=XOlexFEAAAAJ" target="_blank">Google Scholar Profile</a> 
+                <a href="DataAnnotations-llustration.html">A Visual Story for Data Annotation &rarr;</a> -->
+               <p>
+               Welcome to my page. As a Researcher and AI Specialist, I am bringing my academic foundation into applied Data Science and Analytics. By 
+               blending analytical rigor with machine learning, I turn complex data into actionable solutions and real-world business impact.
+            </p>
+
+            </div>
+
+            <a href="#patents" class="btn">Patent Submitted</a>
+            <a href="#publications" class="btn">Explore my Research Work</a>
+            <!--<a href="#Visual Story for Data Annotation" class="btn">My Sample Works</a>-->
+            <a href="DataAnnotation-llustration.html" class="btn"> Data Annotation Samples</a> 
+            </div>
+
     </div>
-  </header>
+</header>
 
-  <section>
-    <h2>Patents Filed</h2>
-    <ul>
-      <li><strong>Convergence of AI, Blockchain, and Quantum Computing for Ultra-Secure, Transparent, and Autonomous Supply Chain Ecosystems</strong> — 
-      <em>The Patent Office Journal No. 42/2024, Application No. 202441076008 A | Filed: 2024/10/18, published page 825</em> — Co-invented a supply chain 
-      security architecture integrating AI for autonomous decision-making, blockchain for immutable ledger tracking, and quantum computing for high-speed 
-      optimization and quantum-resistant encryption.</li>
-    </ul>
-  </section>
+<!-- Data Annotation Story 
+<button type="button" href='DataAnnotations-llustration.html'" class="btn id = "Visual Story for Data Annotation">
+    Data Annotation Samples
+</button> -->
 
-  <section>
-    <h2>Research Publications</h2>
-    <ul>
-      <li><strong>Improved CP-ABE based crypto technique to secure EHRS with access policy-based authentication schemes</strong> — <em>J. Pharm. Negat. Results, 2022, Volume 13, pages 2365–2379</em> — Developed an optimized CP-ABE access control mechanism for EHR systems, minimizing encryption latency and overhead through streamlined policy verification.</li>
 
-      <li><strong>Privacy preserving and security management in cloud-based electronic health records — A survey</strong> — <em>Springer Nature Intelligent Computing and Innovation on Data Science: Proceedings of ICTIDS 2019, 2021/11/18, pages 21–29</em> — Examines security and privacy vulnerabilities associated with cloud-based Electronic Health Records (EHRs) while evaluating current cryptographic and access-control solutions.</li>
+<!-- Research Interests -->
+<section class="research" id="research">
+    <div class="container section-grid">
 
-      <li><strong>An efficient CH based authentication and authorization for secure EHR using DF-BCrypt and hashed access structure</strong> — <em>Springer Nature Switzerland, International Conference on Advancements in Smart Computing and Information Security, 2023, pages 207–226</em> — Proposes a security framework for Electronic Health Records (EHRs) that combines Cipher Hash authentication (via DF-BCrypt), SHA-512 hash-tree authorization, and Elliptic Curve Cryptography (CCECC) to protect sensitive medical data from manipulation and unauthorized access.</li>
-     
-      <li><strong>A Cryptographic Authorization Model for Secure EHRs in Healthcare Cloud Integrating MAC Verification with Hashing Methods</strong> — <em>International Journal of Multidisciplinary Research in Arts, Science &amp; Commerce (IJMRASC), ISSN Online: 2583-018X, Vol. 4(1), March 2024, pp. 48–67</em> — Proposes a cloud-based Electronic Health Record (EHR) authorization model that integrates DF-ASH512 hashing, LDH-TDES-MAC verification, and double-stage CREDCC encryption to authenticate network nodes and protect sensitive medical data.</li>
+        <div>
+            <h2>Research<br>Interests</h2>
+        </div>
 
-      <li><strong>PDHSMICK: A partial key-based secure EHRs with distributed cloud for healthcare systems applying MI-CRYSTALS-Kyber</strong> — <em>Computer Software and Media Application, Issue 1, Volume 6, 2023 (doi: 10.24294/csma.v6i1.3062)</em> — Introduces a distributed cloud security framework for Electronic Health Records (EHRs) that combines MI-CRYSTALS-Kyber post-quantum encryption, DM-DSA digital signatures, and EX-EOF hashing to reduce response times and prevent transaction privacy leaks.</li>
+        <div>
+            <p>
+                My research focuses on securing Electronic Health Records stored in cloud and preserving the authenticity of sensitive data through             
+                innovative cryptographic approaches and technologies.
+            </p>
 
-      <li><strong>A Novel Framework for Role Based Access Policy Authorization and CLSB-EECC Based EHR Security with Energy Efficient Authenticated Path</strong> — <em>International Conference VICCM, 2022</em> — Proposes a security framework for Electronic Health Records (EHRs) that combines Cipher Hash authentication (via DF-BCrypt), SHA-512 hash-tree authorization, and Elliptic Curve Cryptography (CCECC) to protect sensitive medical data from manipulation and unauthorized access.</li>
+            <p>
+               I am deeply interested in the evolution, storage, and real-world purpose of data. Eager to challenge myself in the AI field, I am actively 
+               mastering machine learning techniques, advanced AI technologies, and cloud infrastructure .
+            </p>
 
-      <li><strong>Privacy and Security Implementation in Existing Cloud Based Electronic Health Records - A Detailed Review</strong> — <em>International Journal of Advanced Science and Technology, Issue 7, Volume 29, 2020, pp. 2844–2855</em> — Examines existing security and privacy mechanisms for cloud-based Electronic Health Records (EHRs), evaluating how cryptographic techniques, access control models, and scalable cloud architectures address healthcare data protection challenges.</li>
+            <p>
+              Pairing these modern technical skills with my analytical research background enables me to build end-to-end, data-driven solutions. I am now 
+              looking forward to applying this expertise to help organizations innovate, optimize processes, and make smarter decisions..
+            </p>
 
-      <li>Full publication metrics available on <a href="https://scholar.google.com/citations?hl=en&user=XOlexFEAAAAJ" target="_blank">Google Scholar</a>.</li>
-    </ul>
-  </section>
+            <a href="#contact" class="btn">Learn More</a>
+        </div>
 
-  <section>
-    <h2>Subjects Taught</h2>
-    <ul>
-      <li><strong>Introduction to Artificial Intelligence (Elective)</strong> — Taught search algorithms, logic representation, and machine learning basics.</li>
-      <li><strong>Introduction to Cloud Computing (Elective)</strong> — Taught basics and models of cloud with in-depth knowledge of AWS concepts.</li>
-      <li><strong>Computer Networks</strong> — Covered network architectures, routing protocols, TCP/IP, and socket programming.</li>
-      <li><strong>Database Management Systems</strong> — Supervised practical schema design, SQL querying, normalization, and data integrity projects.</li>
-      <li><strong>Middleware</strong> — Taught distributed system communication, message brokers, RPC, and API integration.</li>
-      <li><strong>Programming Languages (C, C++, Java, Python, JavaScript, HTML, XML, React, CSS)</strong> — Designed lectures, coding labs, and full-stack development assignments.</li>
-      <li><strong>Data Mining</strong> — Instructed on data preprocessing, clustering, classification, and pattern discovery techniques.</li>
-      <li><strong>Operating Systems</strong> — Covered process management, concurrency, memory allocation, and file systems.</li>
-    </ul>
-  </section>
+    </div>
+</section>
 
-  <section>
-    <h2>Workshops &amp; Technical Training</h2>
-    <ul>
-      <li><strong>[Workshop Title, e.g., Python for Scientific Data Processing]</strong> — Conducted hands-on sessions for graduate researchers on data cleaning and validation.</li>
-      <li><strong>[Workshop Title, e.g., Academic Writing &amp; Reproducible Research]</strong> — Trained students on structured documentation and peer-review standards.</li>
-    </ul>
-  </section>
 
-  <section>
-    <h2>Faculty Development Programmes Attended</h2>
-    <ul>
-      <li><strong>May 2022</strong> — <em>One-week Faculty Development Programme on Research Methodology</em>, Kamala Nehru Maha Vidyalaya, Maharashtra, India.</li>
-      <li><strong>Dec 2020</strong> — <em>Two days Faculty Development Programme on Cloud Technologies</em>, Vel Tech University, Chennai, India.</li>
-      <li><strong>Sep 2018</strong> — <em>Introduction to Cloud Computing</em>, Skill India.</li>
-      <li><strong>Jan 2014</strong> — <em>National Programme on Technology Enhanced Learning</em>, IIT Madras.</li>
-      <li><strong>May 2013</strong> — <em>Ten Days Workshop on Database Management Systems</em>, IIT Bombay.</li>
-      <li><strong>July 2012</strong> — <em>Ten Days Workshop on Introduction to Research Methodologies</em>, IIT Bombay.</li>
-      <li><strong>June 2012</strong> — <em>Ten Days Workshop on Computational Fluid Dynamics</em>, IIT Bombay.</li>
-    </ul>
-  </section>
+<!-- Patents Filed -->
+<section class="bg-cream" id="patents">
+    <div class="container section-grid">
+        <div>
+            <h2>Patents<br>Filed</h2>
+        </div>
 
-</body>
-</html>
+        <div>
+            <ul class="item-list">
+                <li class="item-entry">
+                     <h3 style="font-name: BellMT; font-size: 12px;"> Convergence of AI, Blockchain, and Quantum Computing for Ultra-Secure, Transparent, and Autonomous Supply Chain                 
+                     Ecosystems </h3>
+ <h4 style="font-name: BellMT; font-size: 10px;"><em> The Patent Office Journal No. 42/2024, Application No. 202441076008 A | Filed: 2024/10/18, published page 825</em></h4>
+<br>
+<p> Co-invented a supply chain security architecture integrating AI for autonomous decision-making, blockchain for immutable ledger tracking, and quantum computing for high-speed optimization and quantum-resistant encryption. </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Research Publications -->
+<section class="bg-white" id="publications">
+    <div class="container section-grid">
+        <div>
+            <h2>Research<br>Publications</h2>
+        </div>
+
+        <div>
+            <ul class="item-list">
+                <li class="item-entry">
+                     <h3 style="font-name: BellMT; font-size: 12px;"> Improved CP-ABE based crypto technique to secure EHRS with access policy-based   
+                     authentication schemes </h3>
+                    <h4 style="font-size: 10px;">S.Prathima and Dr.C.Priya — <em>J. Pharm. Negat. Results, 2022, Volume 13, pages 2365–2379</em></h4>
+                    <p style="font-name: BellMT; font-size: 10px;">
+                     Developed an optimized CP-ABE access control mechanism for EHR systems, minimizing encryption latency and overhead through streamlined    
+                     policy verification.
+</p>
+<em>
+      <a href=" https://www.pnrjournal.com/index.php/home/article/view/3781" target="_blank" rel="noopener noreferrer">
+        Read Article
+      </a>
+    </em>
+                </li>
+                <li class="item-entry">
+                    <h3 style="font-name: BellMT; font-size: 12px;">Privacy preserving and security management in cloud-based electronic health records — A 
+                    survey </h3>
+                    <h4 style="font-name: BellMT; font-size: 9px;">S.Prathima and C.Priya — <em> Springer Nature Intelligent Computing and Innovation on 
+                    Data Science: Proceedings of ICTIDS 2019, 2021/11/18, pages 21–29</em></h4>
+                    <p style="font-name: BellMT; font-size: 10px;">
+                    Examines security and privacy vulnerabilities associated with cloud-based Electronic Health Records (EHRs) while evaluating current     
+                    cryptographic and access-control solutions.
+</p>
+<em>
+      <a href= "https://link.springer.com/chapter/10.1007/978-981-15-3284-9_3" target="_blank" rel="noopener noreferrer">
+        Read Article
+      </a>
+    </em>
+
+                </li>
+                <li class="item-entry">
+                    <h3 style="font-name: BellMT; font-size: 12px;">An efficient CH based authentication and authorization for secure EHR using DF-BCrypt   
+                     and hashed access structure</h3>
+                    <h4 style="font-name: BellMT; font-size: 9px;">S.Prathima and R.Durga — <em> Springer Nature Switzerland, International Conference on  
+                    Advancements in Smart Computing and Information Security, 2023, pages 207–226</em></h4>
+                     <p style="font-name: BellMT; font-size: 10px;">
+                        Proposes a security framework for Electronic Health Records (EHRs) that combines Cipher Hash authentication (via DF-BCrypt), SHA-512    
+                        hash-tree authorization, and Elliptic Curve Cryptography (CCECC) to protect sensitive medical data from manipulation and                 
+                        unauthorized access.
+                     </p>
+
+                     <em>
+                         <a href= "https://link.springer.com/chapter/10.1007/978-3-031-59100-6_16" target="_blank" rel="noopener noreferrer">
+                         Read Article
+                        </a>
+                    </em>
+                </li>
+                <li class="item-entry">
+                    <h3 style="font-name: BellMT; font-size: 12px"> A Cryptographic Authorization Model for Secure EHRs in Healthcare Cloud Integrating MAC 
+                     Verification with Hashing Methods</h3>
+                    <h4 style="font-name: BellMT; font-size: 9px;">S.Prathima and R.Durga — <em> International Journal of Multidisciplinary Research in 
+                     Arts, Science &amp; Commerce (IJMRASC), ISSN Online: 2583-018X, Vol. 4(1), March 2024, pp. 48–67</em></h4>
+                     <p style="font-name: BellMT; font-size: 10px;">
+                      Proposes a cloud-based Electronic Health Record (EHR) authorization model that integrates DF-ASH512 hashing, LDH-TDES-MAC 
+                      verification, and double-stage CREDCC encryption to authenticate network nodes and protect sensitive medical data.
+                     </p>
+ 
+                        <em>
+                         <a href= "https://www.sdnbvc.edu.in/wp-content/uploads/2024/09/PAPERID07-2.pdf" target="_blank" rel="noopener noreferrer">
+                         Read Article
+                         </a>
+                         </em>
+
+
+                </li>
+                <li class="item-entry">
+                     <h3 style="font-name: BellMT; font-size: 12px">PDHSMICK: A partial key-based secure EHRs with distributed cloud for healthcare systems applying MI-CRYSTALS-Kyber</h3>
+                    <h4 style="font-name: BellMT; font-size: 9px;">S.Prathima and R.Durga — <em> Computer Software and Media Application, Issue 1, Volume 6, 2023 (doi: 10.24294/csma.v6i1.3062)</em></h4>
+                     <p style="font-name: BellMT; font-size: 10px;">
+                        Introduces a distributed cloud security framework for Electronic Health Records (EHRs) that combines MI-CRYSTALS-Kyber post-quantum encryption, DM-DSA digital signatures, and EX-EOF hashing to reduce response times and prevent transaction privacy leaks.
+                     </p>
+ 
+                        <em>
+                         <a href= "https://doi.org/10.24294/csma.v6i1.3062" target="_blank" rel="noopener noreferrer">
+                         Read Article
+                         </a>
+                        </em>
+               </li>
+                <li class="item-entry">
+                     <h3 style="font-name: BellMT; font-size: 12px">Privacy and Security Implementation in Existing Cloud Based Electronic Health Records - 
+                     A Detailed Review</h3>
+                    <h4 style="font-name: BellMT; font-size: 9px;">S.Prathima and C.Priya — <em> International Journal of Advanced Science and Technology, 
+                     Issue 7, Volume 29, 2020, pp. 2844–2855</em></h4>
+                     <p style="font-name: BellMT; font-size: 10px;">
+                        Examines existing security and privacy mechanisms for cloud-based Electronic Health Records (EHRs), evaluating how cryptographic 
+                        techniques, access control models, and scalable cloud architectures address healthcare data protection challenges.
+                     </p>
+                      <em>
+                         <a href= "http://sersc.org/journals/index.php/IJAST/article/view/18170" target="_blank" rel="noopener noreferrer">
+                         Read Article
+                         </a>
+                         </em>
+
+                </li>
+                <li class="item-entry">
+                     <h3 style="font-name: BellMT; font-size: 12px">A Novel Framework for Role Based Access Policy Authorization and CLSB-EECC Based EHR 
+                     Security with Energy Efficient Authenticated Path</h3>
+                     <h4 style="font-name: BellMT; font-size: 9px;">S.Prathima and C.Priya — <em> International Conference VICCM, 2022</em></h4>
+                     <p style="font-name: BellMT; font-size: 10px;">
+                      Proposes a security framework for Electronic Health Records (EHRs) that combines Cipher Hash authentication (via DF-BCrypt), SHA-512 
+                     hash-tree authorization, and Elliptic Curve Cryptography (CCECC) to protect sensitive medical data from manipulation and unauthorized 
+                     access.
+                     </p>
+ 
+                 </li>
+            </ul>
+
+            <a href="https://scholar.google.com/citations?hl=en&user=XOlexFEAAAAJ" class="btn">Full Metrics on Google Scholar &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- Teaching Experience -->
+<section class="bg-cream" id="teaching">
+    <div class="container section-grid">
+        <div>
+            <h2>Subjects<br>Handled</h2>
+        </div>
+
+        <div>
+            <ul class="item-list">
+                 <li class="item-entry">
+                   <header class="entry-header">
+                   <h3>Introduction to Artificial Intelligence</h3>
+                   <span class="course-tag">Postgraduate Elective</span>
+                  <time datetime="2023">April 2023 – September 2024</time>
+                  </header>
+                  <p class="course-summary">
+                     Designed and delivered lectures on search algorithms, logic representation, and machine learning fundamentals for 60+ students.
+                  </p>
+                  <ul class="highlights">
+                   <li>Guided hands-on Python labs and weekly problem-solving sessions.</li>
+                   <li>Mentored student teams in building end-to-end classification projects.</li>
+                  </ul>
+               </li>
+
+                <li class="item-entry">
+                    <h3>Introduction to Cloud Computing (Elective)</h3>
+                    <p>Taught basics and models of cloud with in-depth knowledge of AWS concepts.</p>
+                </li>
+
+                <ul class="item-list">
+               <li class="item-entry">
+                  <header class="entry-header">
+                  <h3>Computer Networks</h3>
+                  <span class="course-tag">Core Course</span>
+                  </header>
+                 <p class="course-summary">
+                 Delivered lectures and hands-on networking labs covering network architectures, routing protocols, TCP/IP, and socket programming.
+                </p>
+               <ul class="skill-tags">
+              <li>TCP/IP</li>
+              <li>Routing Protocols</li>
+              <li>Socket Programming</li>
+        </ul>
+    </li>
+
+    <li class="item-entry">
+        <header class="entry-header">
+            <h3>Database Management Systems</h3>
+            <span class="course-tag">Core Course</span>
+        </header>
+        <p class="course-summary">
+            Supervised practical database projects focused on relational schema design, SQL querying, normalization, and data integrity.
+        </p>
+        <ul class="skill-tags">
+            <li>SQL</li>
+            <li>Schema Design</li>
+            <li>Normalization</li>
+        </ul>
+    </li>
+
+    <li class="item-entry">
+        <header class="entry-header">
+            <h3>Middleware</h3>
+            <span class="course-tag">Systems &amp; Distributed Computing</span>
+        </header>
+        <p class="course-summary">
+            Instructed students on distributed system communication, message brokers, remote procedure calls (RPC), and API integration.
+        </p>
+        <ul class="skill-tags">
+            <li>Distributed Systems</li>
+            <li>Message Brokers</li>
+            <li>RPC &amp; APIs</li>
+        </ul>
+    </li>
+
+    <li class="item-entry">
+        <header class="entry-header">
+            <h3>Programming Languages &amp; Web Development</h3>
+            <span class="course-tag">Lab &amp; Lecture Series</span>
+        </header>
+        <p class="course-summary">
+            Designed lectures, coding labs, and full-stack software development assignments across multiple programming paradigms.
+        </p>
+        <ul class="skill-tags">
+            <li>C / C++</li>
+            <li>Java</li>
+            <li>Python</li>
+            <li>JavaScript &amp; React</li>
+            <li>HTML, CSS &amp; XML</li>
+        </ul>
+    </li>
+
+    <li class="item-entry">
+        <header class="entry-header">
+            <h3>Data Science</h3>
+            <span class="course-tag">Data Mining</span>
+        </header>
+        <p class="course-summary">
+            Taught end-to-end knowledge discovery workflows including data preprocessing, clustering, classification, and pattern discovery.
+        </p>
+        <ul class="skill-tags">
+            <li>Clustering</li>
+            <li>Classification</li>
+            <li>Data Preprocessing</li>
+        </ul>
+    </li>
+
+    <li class="item-entry">
+        <header class="entry-header">
+            <h3>Operating Systems</h3>
+            <span class="course-tag">Core Course</span>
+        </header>
+        <p class="course-summary">
+            Covered core kernel concepts including process management, concurrency, memory allocation, and file system architecture.
+        </p>
+        <ul class="skill-tags">
+            <li>Concurrency</li>
+            <li>Memory Management</li>
+            <li>File Systems</li>
+        </ul>
+    </li>
+</ul>
+
+        </div>
+    </div>
+</section>
+
+<!-- Workshops & Technical Training -->
+<section class="bg-white" id="workshops">
+    <div class="container section-grid">
+        <div>
+            <h2>Workshops &amp;<br>Technical Training</h2>
+    </div>
+        <div>
+
+            <ul class="item-list">
+                <li class="item-entry">
+                 <h4 style="font-name: BellMT; font-size: 12px">[May 2022]  One-week Faculty Development Programme on Research Methodology,    
+                 Kamala Nehru Maha Vidyalaya, Maharashtra, India</h4>
+             </li>
+            </ul>
+
+            <ul class="item-list">
+                <li class="item-entry">
+                 <h4 style="font-name: BellMT; font-size: 12px">[Dec 2020]  Two days Faculty Development Programme on Cloud Technologies,   
+                 Vel Tech University, Chennai, India </h4>
+             </li>
+             </ul>
+             <ul class="item-list">
+                <li class="item-entry">
+                 <h4 style="font-name: BellMT; font-size: 12px">[Sep 2018] Introduction to Cloud Computing, Skill India </h4>
+           </li>  
+              
+           </ul>
+
+
+    
+
+        <div>
+            <ul class="item-list">
+                <li class="item-entry">
+                    <h3 style="font-name: BellMT; font-size: 12px">Python for Scientific Data Processing</h3>
+                    <pstyle="font-name: BellMT; font-size: 12px">Conducted hands-on sessions for graduate researchers on data cleaning and validation.</p>
+              </li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+        
