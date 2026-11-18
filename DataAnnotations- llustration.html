@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Illustrations for Data Annotation |Using Python & SQL</title>
+  <style>
+    :root {
+      --bg-page: #f0f9ff;
+      --bg-card: #ffffff;
+      --bg-subtle: #e0f2fe;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --border-color: #bae6fd;
+      --accent-blue: #0284c7;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem;
+      background: var(--bg-page);
+    }
+
+    header {
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      margin: 0 0 0.5rem 0;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0c4a6e;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    section {
+      margin-bottom: 3rem;
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+      color: #0c4a6e;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 1.1rem;
+      max-width: 72ch;
+    }
+
+    .prompt-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 3px solid var(--accent-blue);
+      border-radius: 6px;
+      padding: 0.85rem 1.1rem;
+      font-size: 0.96rem;
+      margin-bottom: 1.35rem;
+    }
+
+    .code-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin: 1.25rem 0;
+    }
+
+    @media (max-width: 720px) {
+      .code-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .code-card {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-card);
+    }
+
+    .code-header {
+      padding: 0.5rem 0.9rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border-color);
+      background: #f8fafc;
+    }
+
+    .header-bad {
+      color: #cf222e;
+    }
+
+    .header-good {
+      color: #1a7f37;
+    }
+
+    pre {
+      margin: 0;
+      padding: 1rem;
+      font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.85rem;
+      line-height: 1.55;
+      overflow-x: auto;
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    .kw { color: #cf222e; font-weight: 500; }
+    .fn { color: #8250df; }
+    .str { color: #0a3069; }
+    .type { color: #953800; }
+    .num { color: #0550ae; }
+
+    button {
+      background: var(--bg-card);
+      color: #0c4a6e;
+      border: 1px solid var(--border-color);
+      padding: 0.55rem 1.05rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    button:hover {
+      background: var(--bg-subtle);
+    }
+
+    .notes-box {
+      display: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 3px solid var(--accent-blue);
+      padding: 1.1rem 1.35rem;
+      margin-top: 1rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.95rem;
+    }
+
+    ul {
+      margin: 0.6rem 0 0 0;
+      padding-left: 1.3rem;
+    }
+
+    li {
+      margin-bottom: 0.5rem;
+    }
+
+    code {
+      background: var(--bg-subtle);
+      padding: 0.15rem 0.35rem;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 0.85em;
+    }
+
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.75rem;
+      margin-top: 3.5rem;
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>From CS Teaching to AI Data Annotation</h1>
+    <p class="subtitle">How grading code translates to evaluating Python and data analytics models.</p>
+  </header>
+
+  <section>
+    <h2>How Teaching Fits Data Annotation</h2>
+    <p>During my Ph.D. and years teaching Computer Science, I spent hundreds of hours reading student code and writing grading rubrics. You quickly learn that vague instructions lead to subtle bugs, especially around missing values, data types, and edge cases.</p>
+    <p>Evaluating AI-generated code in RLHF works the same way. Models often write code that looks right at a glance but breaks on messy data. Good annotation means catching those quiet failures and explaining clearly why one implementation is safer than another.</p>
+  </section>
+
+  <section>
+    <h2>Example 1: Python &amp; Pandas Evaluation</h2>
+    <div class="prompt-box">
+      <strong>Prompt:</strong> "Write a Python function using pandas to calculate average revenue per region, ignoring invalid negative entries."
+    </div>
+
+    <div class="code-grid">
+      <div class="code-card">
+        <div class="code-header header-bad">Response A &mdash; Edge-Case Bug</div>
+        <pre><span class="kw">def</span> <span class="fn">avg_rev</span>(df):
+    df = df[df[<span class="str">'rev'</span>] <span class="num">&gt; 0</span>]
+    <span class="kw">return</span> df.<span class="fn">groupby</span>(<span class="str">'region'</span>)[<span class="str">'rev'</span>].<span class="fn">mean</span>()</pre>
+      </div>
+
+      <div class="code-card">
+        <div class="code-header header-good">Response B &mdash; Preferred</div>
+        <pre><span class="kw">def</span> <span class="fn">avg_rev</span>(df: <span class="type">pd.DataFrame</span>) -&gt; <span class="type">pd.Series</span>:
+    valid = df.loc[df[<span class="str">'rev'</span>].<span class="fn">ge</span>(<span class="num">0</span>)].<span class="fn">dropna</span>(subset=[<span class="str">'region'</span>])
+    <span class="kw">return</span> valid.<span class="fn">groupby</span>(<span class="str">'region'</span>)[<span class="str">'rev'</span>].<span class="fn">mean</span>()</pre>
+      </div>
+    </div>
+
+    <button onclick="toggleNotes('notes-1', this)">Show Evaluation Notes</button>
+
+    <div id="notes-1" class="notes-box">
+      <strong>Preference: Response B</strong>
+      <ul>
+        <li><strong>Zero values:</strong> The prompt only asks to ignore negative numbers. Response A uses <code>&gt; 0</code>, which accidentally drops valid $0 revenue rows. Response B uses <code>.ge(0)</code> to keep them.</li>
+        <li><strong>Missing regions:</strong> Response B explicitly drops rows where <code>region</code> is null so grouping behaves predictably.</li>
+        <li><strong>Clarity:</strong> Type hints in Response B make the expected input and output clear without adding unnecessary complexity.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Example 2: SQL Query Evaluation</h2>
+    <div class="prompt-box">
+      <strong>Prompt:</strong> "Write a SQL query to get the total number of orders for every user, including users who have placed zero orders."
+    </div>
+
+    <div class="code-grid">
+      <div class="code-card">
+        <div class="code-header header-bad">Response A &mdash; Drops Zero-Order Users</div>
+        <pre><span class="kw">SELECT</span> u.user_id, <span class="fn">COUNT</span>(o.order_id) <span class="kw">AS</span> total_orders
+<span class="kw">FROM</span> users u
+<span class="kw">JOIN</span> orders o <span class="kw">ON</span> u.user_id = o.user_id
+<span class="kw">WHERE</span> o.status = <span class="str">'completed'</span>
+<span class="kw">GROUP BY</span> u.user_id;</pre>
+      </div>
+
+      <div class="code-card">
+        <div class="code-header header-good">Response B &mdash; Preferred</div>
+        <pre><span class="kw">SELECT</span> u.user_id, <span class="fn">COUNT</span>(o.order_id) <span class="kw">AS</span> total_orders
+<span class="kw">FROM</span> users u
+<span class="kw">LEFT JOIN</span> orders o 
+  <span class="kw">ON</span> u.user_id = o.user_id 
+  <span class="kw">AND</span> o.status = <span class="str">'completed'</span>
+<span class="kw">GROUP BY</span> u.user_id;</pre>
+      </div>
+    </div>
+
+    <button onclick="toggleNotes('notes-2', this)">Show Evaluation Notes</button>
+
+    <div id="notes-2" class="notes-box">
+      <strong>Preference: Response B</strong>
+      <ul>
+        <li><strong>Join logic:</strong> Response A uses an inner <code>JOIN</code>, which completely removes users with zero orders from the output. Response B uses a <code>LEFT JOIN</code> to preserve all users.</li>
+        <li><strong>Filtering placement:</strong> Filtering <code>o.status</code> inside the <code>WHERE</code> clause (as in Response A) turns a left join back into an inner join. Putting that condition in the <code>ON</code> clause keeps zero-order users with a count of <code>0</code>.</li>
+        <li><strong>Count accuracy:</strong> Both correctly use <code>COUNT(o.order_id)</code> instead of <code>COUNT(*)</code>, ensuring null rows aren't counted as orders.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>Background</h2>
+    <p>I hold a Ph.D. in Computer Science with university teaching experience. I am now applying my background in Python, SQL, and rubric design to help train and evaluate AI models on coding and data analysis tasks.</p>
+  </section>
+
+  <footer>
+    <a href="index.html">&larr; Back to my Academic Portfolio</a> &nbsp;|&nbsp; 
+     <a href="https://scholar.google.com/citations?hl=en&user=XOlexFEAAAAJ
+">Google Scholar Profile</a>
+
+  </footer>
+
+  <script>
+    function toggleNotes(id, btn) {
+      var box = document.getElementById(id);
+      if (box.style.display === "block") {
+        box.style.display = "none";
+        btn.textContent = "Show Evaluation Notes";
+      } else {
+        box.style.display = "block";
+        btn.textContent = "Hide Evaluation Notes";
+      }
+    }
+  </script>
+</body>
+</html>
+
