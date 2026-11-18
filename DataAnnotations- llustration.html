@@ -276,7 +276,71 @@
     </div>
   </section>
 
-  <section>
+<section>
+        <h2>Example 3: SQL Query Evaluation (RLHF / Preference Ranking)</h3>
+        <span class="course-tag">SQL &bull; Edge-Case Logic</span>
+        <p class="prompt-text"><strong>Prompt:</strong> "Write a SQL query to get the total number of completed orders for every user, including users who have placed zero orders."</p>
+
+        <div class="comparison-grid">
+            <div class="response-box">
+                <h4>Response A &mdash; Rejected (Drops Zero-Order Users)</h4>
+                <pre><code class="language-sql">SELECT u.user_id, COUNT(o.order_id) AS total_orders
+FROM users u
+JOIN orders o ON u.user_id = o.user_id
+WHERE o.status = 'completed'
+GROUP BY u.user_id;</code></pre>
+                <p><strong>Annotation Critique:</strong> Uses an inner <code>JOIN</code> and a <code>WHERE</code> filter on the right table, which silently excludes users with zero completed orders.</p>
+            </div>
+
+            <div class="response-box">
+                <h4>Response B &mdash; Preferred (Preserves Zero-Order Users)</h4>
+                <pre><code class="language-sql">SELECT u.user_id, COUNT(o.order_id) AS total_orders
+FROM users u
+LEFT JOIN orders o 
+  ON u.user_id = o.user_id 
+  AND o.status = 'completed'
+GROUP BY u.user_id;</code></pre>
+                <p><strong>Annotation Critique:</strong> Correctly uses a <code>LEFT JOIN</code> with the status condition inside the <code>ON</code> clause and counts <code>o.order_id</code> to return <code>0</code> for inactive users.</p>
+            </div>
+        </div>
+    
+</section>
+
+<section>
+            <h3>Example 4: Python Bug Fix &amp; Data Mutation Evaluation</h3>
+            <span class="course-tag">Python &bull; Code Safety</span>
+        
+        <p class="prompt-text"><strong>Prompt:</strong> "Write a Python function that takes a list of numbers and returns a new list containing only the even numbers, without modifying the original list."</p>
+
+        <div class="comparison-grid">
+            <div class="response-box">
+                <h4>Response A &mdash; Rejected (Mutates Input &amp; Skips Elements)</h4>
+                <pre><code class="language-python">def get_evens(nums):
+    for n in nums:
+        if n % 2 != 0:
+            nums.remove(n)
+    return nums</code></pre>
+                <p><strong>Annotation Critique:</strong> Mutates the input list in place (violating the prompt) and skips adjacent odd numbers during iteration due to index shifting.</p>
+            </div>
+
+            <div class="response-box">
+                <h4>Response B &mdash; Preferred (Pure Function &amp; Pythonic)</h4>
+                <pre><code class="language-python">def get_evens(nums):
+    return [n for n in nums if n % 2 == 0]</code></pre>
+                <p><strong>Annotation Critique:</strong> Uses a list comprehension to return a brand-new list cleanly in O(n) time without side effects on the original list.</p>
+            </div>
+        </div>
+   
+</section>
+
+<section>
+
+  <footer>
+    <a href="index.html">&larr; Back to my Academic Portfolio</a> &nbsp;|&nbsp
+</section>
+  </footer>
+
+ <!--  <section>
     <h2>Background</h2>
     <p>I hold a Ph.D. in Computer Science with university teaching experience. I am now applying my background in Python, SQL, and rubric design to help train and evaluate AI models on coding and data analysis tasks.</p>
   </section>
@@ -286,7 +350,7 @@
      <a href="https://scholar.google.com/citations?hl=en&user=XOlexFEAAAAJ
 ">Google Scholar Profile</a>
 
-  </footer>
+  </footer> -->
 
   <script>
     function toggleNotes(id, btn) {
@@ -299,7 +363,8 @@
         btn.textContent = "Hide Evaluation Notes";
       }
     }
-  </script>
+  </script> 
+
 </body>
 </html>
 
